@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mission 2026 — Personal Command Center</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- LOADING SCREEN -->
+  <div id="loader">
+    <div class="loader-inner">
+      <div class="loader-ring"></div>
+      <div class="loader-text">INITIALIZING MISSION CONTROL</div>
+      <div class="loader-bar-wrap"><div class="loader-bar" id="loaderBar"></div></div>
+    </div>
+  </div>
+
+  <!-- PARTICLE CANVAS -->
+  <canvas id="particleCanvas"></canvas>
+
+  <!-- FOCUS MODE OVERLAY -->
+  <div id="focusOverlay" class="hidden">
+    <div class="focus-inner">
+      <div class="focus-label">FOCUS MODE</div>
+      <div class="focus-timer" id="focusTimer">25:00</div>
+      <div class="focus-quote" id="focusQuote"></div>
+      <div class="focus-controls">
+        <button id="focusStart">START</button>
+        <button id="focusStop">EXIT</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOP NAV -->
+  <nav id="topNav">
+    <div class="nav-brand">⬡ MISSION 2026</div>
+    <div class="nav-links">
+      <a href="#hero">Home</a>
+      <a href="#countdown">Countdown</a>
+      <a href="#progress">Skills</a>
+      <a href="#routine">Routine</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#stats">Stats</a>
+    </div>
+    <div class="nav-actions">
+      <button id="focusModeBtn" class="btn-ghost">⊕ Focus Mode</button>
+      <div class="streak-badge" id="navStreak">🔥 <span id="navStreakCount">0</span></div>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════ HERO ═══════════════════ -->
+  <section id="hero">
+    <div class="hero-glow glow-1"></div>
+    <div class="hero-glow glow-2"></div>
+    <div class="hero-glow glow-3"></div>
+
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-dot"></span>
+        MY MISSION 2026
+        <span class="eyebrow-dot"></span>
+      </div>
+      <h1 class="hero-headline">
+        Job Before<br />
+        <span class="gradient-text">December 2026.</span><br />
+        Upwork Income<br />
+        <span class="gradient-text-2">Within 6 Months.</span><br />
+        <em>No Excuses.</em>
+      </h1>
+      <p class="hero-sub">Every line of code you write today is a brick in the fortress of your future. The world rewards those who show up, day after day, without waiting for motivation.</p>
+      <div class="hero-cta">
+        <a href="#countdown" class="btn-primary">See Countdown →</a>
+        <a href="#routine" class="btn-outline">Today's Routine</a>
+      </div>
+      <div class="hero-stats-bar">
+        <div class="hstat"><span id="hDays">—</span><small>Days Left</small></div>
+        <div class="hstat-div"></div>
+        <div class="hstat"><span id="hTasks">0</span><small>Tasks Done Today</small></div>
+        <div class="hstat-div"></div>
+        <div class="hstat"><span id="hStreak">0</span><small>Day Streak</small></div>
+        <div class="hstat-div"></div>
+        <div class="hstat"><span id="hProjects">0</span><small>Projects Built</small></div>
+      </div>
+    </div>
+    <div class="scroll-hint">scroll ↓</div>
+  </section>
+
+  <!-- ═══════════════════ MOTIVATIONAL TICKER ═══════════════════ -->
+  <div class="ticker-wrap">
+    <div class="ticker" id="ticker">
+      <span>DISCIPLINE BEATS TALENT ·</span>
+      <span>EVERY SECOND COUNTS ·</span>
+      <span>BUILD. SHIP. REPEAT ·</span>
+      <span>NO DAYS OFF ·</span>
+      <span>CODE IS YOUR SUPERPOWER ·</span>
+      <span>THE JOB IS WAITING ·</span>
+      <span>SUCCESS IS INEVITABLE ·</span>
+      <span>DISCIPLINE BEATS TALENT ·</span>
+      <span>EVERY SECOND COUNTS ·</span>
+      <span>BUILD. SHIP. REPEAT ·</span>
+      <span>NO DAYS OFF ·</span>
+      <span>CODE IS YOUR SUPERPOWER ·</span>
+      <span>THE JOB IS WAITING ·</span>
+      <span>SUCCESS IS INEVITABLE ·</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ COUNTDOWN ═══════════════════ -->
+  <section id="countdown">
+    <div class="section-header">
+      <div class="section-tag">⧖ LIVE COUNTDOWN</div>
+      <h2>Time Is <span class="gradient-text">Not Waiting</span></h2>
+      <p class="section-sub">December 31, 2026 — The deadline is absolute.</p>
+    </div>
+
+    <div class="countdown-grid">
+      <div class="cd-unit">
+        <div class="cd-number" id="cdDays">000</div>
+        <div class="cd-label">DAYS</div>
+      </div>
+      <div class="cd-sep">:</div>
+      <div class="cd-unit">
+        <div class="cd-number" id="cdHours">00</div>
+        <div class="cd-label">HOURS</div>
+      </div>
+      <div class="cd-sep">:</div>
+      <div class="cd-unit">
+        <div class="cd-number" id="cdMinutes">00</div>
+        <div class="cd-label">MINUTES</div>
+      </div>
+      <div class="cd-sep">:</div>
+      <div class="cd-unit">
+        <div class="cd-number" id="cdSeconds">00</div>
+        <div class="cd-label">SECONDS</div>
+      </div>
+    </div>
+
+    <div class="urgency-messages">
+      <div class="urgency-msg" id="urgencyMsg">Every second is an opportunity.</div>
+    </div>
+
+    <div class="time-progress-wrap">
+      <div class="time-progress-label">
+        <span>Year Progress</span>
+        <span id="yearPct">0%</span>
+      </div>
+      <div class="time-progress-bar">
+        <div class="time-progress-fill" id="yearFill"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ SUCCESS PROBABILITY ═══════════════════ -->
+  <section id="probability">
+    <div class="prob-card glass-card">
+      <div class="prob-left">
+        <div class="section-tag">⚡ SUCCESS ENGINE</div>
+        <h3>Your Success <span class="gradient-text">Probability</span></h3>
+        <p>Based on your current streak, tasks completed, and skills progress. Keep showing up — every action shifts the meter.</p>
+        <div class="prob-factors">
+          <div class="prob-factor">
+            <span class="pf-label">Consistency</span>
+            <div class="pf-bar"><div class="pf-fill" id="pfConsistency"></div></div>
+            <span class="pf-pct" id="pfConsistencyPct">0%</span>
+          </div>
+          <div class="prob-factor">
+            <span class="pf-label">Skill Growth</span>
+            <div class="pf-bar"><div class="pf-fill" id="pfSkill"></div></div>
+            <span class="pf-pct" id="pfSkillPct">0%</span>
+          </div>
+          <div class="prob-factor">
+            <span class="pf-label">Portfolio</span>
+            <div class="pf-bar"><div class="pf-fill" id="pfPortfolio"></div></div>
+            <span class="pf-pct" id="pfPortfolioPct">0%</span>
+          </div>
+        </div>
+      </div>
+      <div class="prob-right">
+        <div class="prob-meter">
+          <svg class="prob-svg" viewBox="0 0 200 120">
+            <path d="M10 110 A90 90 0 0 1 190 110" stroke="rgba(255,255,255,0.08)" stroke-width="12" fill="none" stroke-linecap="round"/>
+            <path d="M10 110 A90 90 0 0 1 190 110" stroke="url(#probGrad)" stroke-width="12" fill="none" stroke-linecap="round"
+              stroke-dasharray="283" stroke-dashoffset="283" id="probArc" style="transition:stroke-dashoffset 2s ease"/>
+            <defs>
+              <linearGradient id="probGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#00ff9d"/>
+                <stop offset="100%" style="stop-color:#00b4ff"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <div class="prob-number" id="probNumber">0%</div>
+          <div class="prob-sublabel">Success Probability</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ PROGRESS DASHBOARD ═══════════════════ -->
+  <section id="progress">
+    <div class="section-header">
+      <div class="section-tag">◈ SKILL MATRIX</div>
+      <h2>Skills <span class="gradient-text">Progress</span></h2>
+      <p class="section-sub">Track and update your mastery levels. Click a card to edit.</p>
+    </div>
+    <div class="skills-grid" id="skillsGrid">
+      <!-- Injected by JS -->
+    </div>
+  </section>
+
+  <!-- ═══════════════════ VISION & MISSION ═══════════════════ -->
+  <section id="vision">
+    <div class="vm-grid">
+      <div class="vm-card glass-card vision-card">
+        <div class="vm-icon">◉</div>
+        <div class="section-tag">VISION</div>
+        <h3>Where I'm Going</h3>
+        <p>"I want to become a highly skilled backend engineer, secure an international remote job, build a successful freelancing career, and create impactful software products that solve real problems."</p>
+      </div>
+      <div class="vm-card glass-card mission-card">
+        <div class="vm-icon">◎</div>
+        <div class="section-tag">DAILY MISSIONS</div>
+        <h3>How I Get There</h3>
+        <ul class="mission-list">
+          <li>⟶ Learn something new every single day</li>
+          <li>⟶ Build projects consistently and ship them</li>
+          <li>⟶ Master English communication</li>
+          <li>⟶ Solve DSA problems daily</li>
+          <li>⟶ Apply for jobs regularly without fear</li>
+          <li>⟶ Send Upwork proposals every day</li>
+          <li>⟶ Document progress, reflect, improve</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ DAILY ROUTINE ═══════════════════ -->
+  <section id="routine">
+    <div class="section-header">
+      <div class="section-tag">☐ DAILY ROUTINE</div>
+      <h2>Today's <span class="gradient-text">Checklist</span></h2>
+      <p class="section-sub">Complete daily. Auto-saves. Resets at midnight.</p>
+    </div>
+
+    <div class="routine-wrap">
+      <div class="routine-header-bar">
+        <div class="routine-progress-info">
+          <span id="routineDone">0</span>/<span id="routineTotal">11</span> tasks · <span id="routinePct">0%</span> complete
+        </div>
+        <div class="routine-streak">🔥 Streak: <strong id="routineStreak">0</strong> days</div>
+        <button class="btn-ghost btn-sm" id="resetRoutineBtn">Reset</button>
+      </div>
+      <div class="routine-progress-bar">
+        <div class="routine-fill" id="routineFill"></div>
+      </div>
+      <div class="checklist-grid" id="checklistGrid">
+        <!-- Injected by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ DAILY CHALLENGE ═══════════════════ -->
+  <section id="challenge">
+    <div class="glass-card challenge-card">
+      <div class="section-tag">⚡ DAILY CHALLENGE</div>
+      <h3 id="challengeTitle">Loading challenge…</h3>
+      <p id="challengeDesc"></p>
+      <div class="challenge-footer">
+        <button class="btn-primary" id="challengeDoneBtn">Mark Complete ✓</button>
+        <span class="challenge-status" id="challengeStatus"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ ROADMAP ═══════════════════ -->
+  <section id="roadmap">
+    <div class="section-header">
+      <div class="section-tag">▶ GOAL ROADMAP</div>
+      <h2>The <span class="gradient-text">Journey</span></h2>
+      <p class="section-sub">Six phases to remote job success.</p>
+    </div>
+    <div class="roadmap-line">
+      <div class="roadmap-phase active" data-phase="1">
+        <div class="phase-circle">1</div>
+        <div class="phase-body glass-card">
+          <div class="phase-tag">PHASE 1 · NOW</div>
+          <h4>Python Mastery</h4>
+          <p>Master Python deeply — OOP, async, decorators, type hints, testing.</p>
+          <div class="phase-skills">Python · Algorithms · Problem Solving</div>
+        </div>
+      </div>
+      <div class="roadmap-phase" data-phase="2">
+        <div class="phase-circle">2</div>
+        <div class="phase-body glass-card">
+          <div class="phase-tag">PHASE 2</div>
+          <h4>FastAPI + PostgreSQL</h4>
+          <p>Build production-grade REST APIs. Master databases, migrations, auth.</p>
+          <div class="phase-skills">FastAPI · PostgreSQL · SQLAlchemy · Docker</div>
+        </div>
+      </div>
+      <div class="roadmap-phase" data-phase="3">
+        <div class="phase-circle">3</div>
+        <div class="phase-body glass-card">
+          <div class="phase-tag">PHASE 3</div>
+          <h4>Portfolio Projects</h4>
+          <p>Ship 3-5 real-world projects. Open source. GitHub. Deployed. Documented.</p>
+          <div class="phase-skills">GitHub · AWS/Render · CI/CD · Documentation</div>
+        </div>
+      </div>
+      <div class="roadmap-phase" data-phase="4">
+        <div class="phase-circle">4</div>
+        <div class="phase-body glass-card">
+          <div class="phase-tag">PHASE 4</div>
+          <h4>Upwork Launch</h4>
+          <p>Build Upwork profile, send 5 proposals/day, land first contract.</p>
+          <div class="phase-skills">Upwork · Proposals · Client Communication</div>
+        </div>
+      </div>
+      <div class="roadmap-phase" data-phase="5">
+        <div class="phase-circle">5</div>
+        <div class="phase-body glass-card">
+          <div class="phase-tag">PHASE 5</div>
+          <h4>Job Applications</h4>
+          <p>Apply aggressively. LeetCode prep. System Design. Mock interviews.</p>
+          <div class="phase-skills">DSA · System Design · Interview Prep</div>
+        </div>
+      </div>
+      <div class="roadmap-phase" data-phase="6">
+        <div class="phase-circle">6</div>
+        <div class="phase-body glass-card">
+          <div class="phase-tag">PHASE 6 · GOAL</div>
+          <h4>Remote Job Success 🎯</h4>
+          <p>Signed offer letter. Remote backend role. Financial independence begins.</p>
+          <div class="phase-skills">International Remote · $$$  · Freedom</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ ACHIEVEMENTS ═══════════════════ -->
+  <section id="achievements">
+    <div class="section-header">
+      <div class="section-tag">◆ ACHIEVEMENTS</div>
+      <h2>Milestone <span class="gradient-text">Badges</span></h2>
+    </div>
+    <div class="badges-grid" id="badgesGrid">
+      <!-- Injected by JS -->
+    </div>
+  </section>
+
+  <!-- ═══════════════════ STATS DASHBOARD ═══════════════════ -->
+  <section id="stats">
+    <div class="section-header">
+      <div class="section-tag">◈ STATISTICS</div>
+      <h2>Your <span class="gradient-text">Numbers</span></h2>
+      <p class="section-sub">Track every metric that matters.</p>
+    </div>
+    <div class="stats-grid" id="statsGrid">
+      <!-- Injected by JS -->
+    </div>
+
+    <!-- Productivity Heatmap -->
+    <div class="heatmap-wrap glass-card">
+      <div class="section-tag" style="margin-bottom:1rem">◫ PRODUCTIVITY HEATMAP · Last 12 Weeks</div>
+      <div class="heatmap" id="heatmap"></div>
+      <div class="heatmap-legend">
+        <span>Less</span>
+        <div class="hm-box" style="--l:0"></div>
+        <div class="hm-box" style="--l:1"></div>
+        <div class="hm-box" style="--l:2"></div>
+        <div class="hm-box" style="--l:3"></div>
+        <div class="hm-box" style="--l:4"></div>
+        <span>More</span>
+      </div>
+    </div>
+
+    <!-- Editable Stats -->
+    <div class="edit-stats glass-card">
+      <div class="section-tag" style="margin-bottom:1rem">✎ UPDATE YOUR STATS</div>
+      <div class="edit-stats-grid" id="editStatsGrid">
+        <!-- Injected by JS -->
+      </div>
+      <button class="btn-primary" id="saveStatsBtn" style="margin-top:1.5rem">Save Stats</button>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ MOTIVATION ENGINE ═══════════════════ -->
+  <section id="motivation">
+    <div class="quote-display glass-card">
+      <div class="quote-icon">"</div>
+      <div class="quote-text" id="quoteText">Loading inspiration…</div>
+      <div class="quote-author" id="quoteAuthor">—</div>
+      <button class="btn-ghost btn-sm" id="nextQuoteBtn" style="margin-top:1.5rem">Next Quote →</button>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ WEEKLY REVIEW ═══════════════════ -->
+  <section id="weeklyReview">
+    <div class="glass-card review-card">
+      <div class="section-tag">⊞ WEEKLY REVIEW</div>
+      <h3>Reflect & Improve</h3>
+      <div class="review-grid">
+        <div class="review-field">
+          <label>What went well this week?</label>
+          <textarea id="reviewWell" placeholder="Write your wins here…"></textarea>
+        </div>
+        <div class="review-field">
+          <label>What could be improved?</label>
+          <textarea id="reviewImprove" placeholder="Be honest with yourself…"></textarea>
+        </div>
+        <div class="review-field">
+          <label>Top 3 goals for next week?</label>
+          <textarea id="reviewNext" placeholder="1. …&#10;2. …&#10;3. …"></textarea>
+        </div>
+        <div class="review-field">
+          <label>How many hours did you study?</label>
+          <input type="number" id="reviewHours" placeholder="e.g. 25" min="0" />
+        </div>
+      </div>
+      <button class="btn-primary" id="saveReviewBtn">Save Review</button>
+      <span class="save-confirm" id="reviewSaved" style="display:none">✓ Saved!</span>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ MANIFESTO ═══════════════════ -->
+  <section id="manifesto">
+    <div class="manifesto-inner">
+      <div class="section-tag" style="text-align:center;margin-bottom:2rem">◈ PERSONAL MANIFESTO</div>
+      <div class="manifesto-lines" id="manifestoLines">
+        <div class="mline">I am not waiting for the right moment.</div>
+        <div class="mline">I am building my skills while others sleep.</div>
+        <div class="mline">Every rejection makes me more dangerous.</div>
+        <div class="mline">I will not be stopped by fear or comfort.</div>
+        <div class="mline">The job is already mine — I just have to earn it.</div>
+        <div class="mline">I code, I ship, I grow. Every. Single. Day.</div>
+        <div class="mline highlight">This is not a dream. This is a deadline.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ FOOTER ═══════════════════ -->
+  <footer>
+    <div class="footer-brand">⬡ MISSION 2026</div>
+    <div class="footer-msg">Built for one person who refused to quit.</div>
+    <div class="footer-meta">Resets daily · Saves locally · No excuses accepted</div>
+  </footer>
+
+  <!-- SKILL EDIT MODAL -->
+  <div id="skillModal" class="modal-overlay hidden">
+    <div class="modal glass-card">
+      <div class="modal-header">
+        <span id="modalSkillName">Skill</span>
+        <button class="modal-close" id="modalClose">✕</button>
+      </div>
+      <label>Progress (%)</label>
+      <input type="range" min="0" max="100" id="modalRange" />
+      <div class="modal-val" id="modalVal">50%</div>
+      <label>Status</label>
+      <select id="modalStatus">
+        <option value="Not Started">Not Started</option>
+        <option value="In Progress">In Progress</option>
+        <option value="Advanced">Advanced</option>
+        <option value="Mastered">Mastered</option>
+      </select>
+      <button class="btn-primary" id="modalSave" style="margin-top:1.5rem;width:100%">Save</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
